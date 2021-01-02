@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title> Transparent Login form </title>
+		<link rel="stylesheet" href="Style/style.css">
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	</head>
+	<body>
+	<div class="loginBox">
+		
+		<img src="Images/bot.png" class="user">
+		<h2>WebHook</h2>
+		<div id="app">
+		<form :action="set_webhook" method="post" enctype="multipart/form-data">
+			<p style="font-size: 18px;">Tokenni kiriting</p>
+			<input type="text" name = "" placeholder="Bot Token" v-model="token">
+			<p style="font-size: 15px !important;">Host URL ni kiriting</p>
+			<input type="text" name = "" placeholder="Host URL" v-model="host">
+			<input type="submit" name = "" value="WebHookni sozlash">
+		</form>
+		</div>
+	</div>
+	<script>
+		new Vue({
+		  el: '#app',
+		  data: {
+			token: '',
+			host: '',
+		  },
+		  computed: {
+			get_webhook_info: function () {
+			  return 'https://api.telegram.org/bot' + this.token + '/getwebhookinfo'
+			},
+			set_webhook: function () {
+			  return 'https://api.telegram.org/bot' + this.token + '/setwebhook?url=' + this.host
+			},
+		   }
+		})
+	
+	  </script>
+	</body>
+</html>
